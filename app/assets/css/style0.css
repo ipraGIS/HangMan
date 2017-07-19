@@ -1,0 +1,190 @@
+body{
+	background-color: #eee;
+	font-family: :Helvetica, Arial;
+}
+.clearfix{
+	float: none;
+	clear:both;
+	text-decoration: :none;
+	list-style: none,
+}
+
+#content{
+	width: 80%;
+	min-height: 500px;
+	margin: 0px auto;
+	margin-top: 20px;
+	border: 10px solid #CCC; 
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px #ddd;
+	background: #eee;
+
+}
+
+header{
+	padding: 15px;
+	background:#88AA00;
+}
+
+header .title-subtitle{
+	float:left;
+	border-bottom: 1px solid white;
+	border-top: 1px solid white;
+	color: white;
+	padding: 20px;
+	padding-left: 90px;
+	margin-left: -90px;
+	padding-bottom: 28px;
+
+	/**/
+}
+
+header h1, 
+header p{
+	margin:0px;
+	margin-left: 5px;
+	padding-bottom: 5px;
+
+}
+
+header #logo{
+	width: 90px;
+	display: block;
+	float:left;
+	margin: auto;
+    padding: 10px;
+}
+
+header h1 a{
+	text-decoration: none;
+	color:white;
+}
+
+header h1 a:hover{
+		opacity: 0.5;
+}
+
+.btn{
+	font-size: 13px;
+	border: 1px solid #ccc;
+	border-color:#1976D2;
+	border-radius: 4px;
+	box-shadow: 0px 0px 5px #ddd;
+	padding:5px;
+	text-decoration: none;
+	background: #0074D9;
+	cursor:pointer;
+	margin-left: 5px;
+}
+
+.btn-default{
+	background: #E23237;
+	border-color:#F54747;
+}
+
+.btn-edit{
+	background: #0A0;
+	border-color:#59A600;
+}
+.btn-remove{
+	background: #EEA615;
+	border-color:#CC941C;
+}
+
+.btn-add-favorite{
+	display: block;
+	padding: 10px;
+	float:right;
+	margin-right: 30px;
+	margin-top: 5px;
+	background-color: #eee;
+	border-radius: 4px;
+	box-shadow:  0px 0px 5px gray;
+	text-decoration: none;
+	transition: all 300ms;
+}
+
+.btn-add-favorite: hover{
+	background-color: white;
+	color:#444;
+}
+
+.btn-add-image{
+	background-color: lightgray;
+	border-color:gray;
+	color: darkgray;
+}
+
+#favorites-list{
+	padding: 0px;
+	margin:0px;
+}
+
+.favorite-item{
+	list-style:none;
+	width:30%;
+	border:1px, solid #ddd;
+	height: 120px;
+	float:left;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color:gray;
+	background: white;
+	margin:10px;
+}
+
+.favorite-item .favorite-data{
+	float:left;
+	margin-left: 20px;
+}
+
+.favorite-item h2{
+	color: #444;
+	margin: 0px;
+	padding: 0px;
+	margin-top: 20px;
+}
+
+
+.favorite-item .url{
+	margin-top: 20px;
+	padding:20px;
+	height: 45px;
+	overflow: hidden;
+	margin-top: 2px;
+	margin-left:25px;
+	width: 90%;
+	background:white;
+}
+
+.favorite-box{
+	margin: 0px;
+	padding: 0px;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.favorite-box .url{
+	color:blue;
+}
+
+.favorite-box .description{
+	color:green;
+}
+
+.sure-box{
+	position:absolute; 
+	margin-top: -110px;
+	width: 300px;
+	height: 100px;
+	background-color: white;
+	text-align: center;
+	color: black;
+}
+
+footer{
+	width:80%;
+	margin: 0px auto;
+	margin-top: 20px;
+	color:gray;
+}

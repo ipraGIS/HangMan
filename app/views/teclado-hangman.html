@@ -1,0 +1,14 @@
+<div class="left">
+    <p><label><strong>Introduce una letra:</strong></label></p>
+    <input id="inputLetra" type=text maxlength="1" [(ngModel)]="letra">
+
+
+    <div id="Errores">
+        <p><label>Lista de Palabras Erroneas</label></p>
+        <!-- <span *ngFor="let letra of letras">{{letra}}</span>-->
+        <ul id="listErronea">
+            <li *ngFor="let letra of letras">{{letra}}</li>
+        </ul>
+    </div>
+
+</div>
