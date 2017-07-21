@@ -15,8 +15,8 @@ export class AppComponent{
 	public title: string;
 	public description: string;
 	constructor(){
-		this.title = "HANGMAN";
-		this.description = "¿De que película se trata?"
+		//this.title = "Juego del Ahorcado";
+		//this.description = "¿De que película se trata?"
 
 	}
 

@@ -1,58 +1,145 @@
 body{
-	background-color: #eee;
-	font-family: Helvetica, Arial;
+	background-color: #FFF;
+    font-family: Helvetica, Arial;
+    width:100%;
+    height: 100%;
+    margin:0px;
+     font-family: sans-serif;
+  font-size: 18px;
 }
 
-#content{
-	width: 95%;
-	margin: 0px auto;
-	margin-top: 20px;
-	border: 10px solid #CCC; 
-	border-radius: 5px;
-	box-shadow: 0px 0px 5px #ddd;
-    background: #FFF;
+#adivina{
+    font-size: 200%;
+    padding-bottom: 8vh;
 }
+
+/* #content{
+    width: 100%;
+    height: 100%;
+	margin: 0px ;
+    background: #FFF;
+} */
 
 #tablero{
-    width: 95%;
-    height: 20vh;
-    background-color: #FFF;
-    border: 10px solid #000;
-    font-size: 200%;
+    width: 100%;
+    min-height: 200px;
+    background-color:  #00796B;
+    border: none;
     text-align: center;
     overflow: hidden;
-    margin-bottom: 3%;
+    color:#FFF;
+    padding-top: 8vh;
     
 }
 
 input[type="text"] {
   display: block;
   width: 40%;
-  font-family: sans-serif;
-  font-size: 18px;
-  appearance: none;
+  top:10px;
+  line-height: 200%;
   box-shadow: none;
   border-radius: none;
+  text-transform:uppercase
 }
 
 .left {  
     position:relative;
     left:0%;
     float: left;
-    background: #FFF;
-    padding-left: 10px;
-    border: 10px solid #000;
-    width: 45%;
+    background: #212121;
+    color:#FFFFFF;
+    border: none;
+    width: 50%;
     height: 50vh;
     z-index: 1;
+    margin:0px;
+    text-align:left;
 }
+
+.marginText{
+    margin-left: 10px;
+    margin-top:30px;
+    white-space:nowrap
+}
+
 .right {
-    background: #FFF;
-    border: 10px solid #000;
-    margin-left: 3%;
+    background: #FFC107;
+    border: none;
     position:relative;
     display: inline-block;
-    width: 45%;
+    width: 50%;
     height: 50vh;
     z-index: 1;
+    margin:0px;
+    
 }
+.ahoracado0{
+    background-image: url("app/assets/images/ahorcado_5.svg");
+    background-repeat: no-repeat;
+    width: auto; /*or your image's width*/
+    height: auto; /*or your image's height*/
+    margin: 0;
+    padding: 0;
+}
+.oculto{
+visibility:hidden;
+}
+
+.visible{
+    visibility:visible;
+}
+
+.button{
+    background: #00796B;
+    color:#ffffff;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    border:3px #FFC107 solid;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+.button:hover{
+    background: gray;
+}
+
+#modal {
+  background: #FFF;
+  font-size: 1em;
+  color: #000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 25%;
+  width: 50%;
+  border-radius: 10px;
+  transition: all .1s;
+  position: absolute;
+  z-index: 9999;
+  vertical-align: center;
+  padding:10px;
+}
+
+
+.close {
+	background: #00796B;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: 5px;
+	text-align: center;
+	top: 5px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	 border:3px #FFC107 solid;
+}
+
+.close:hover { background: gray; }

@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+//mport { ImagenHangmanComponent } from './imagen-hangman';
 var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
     /*public callbackLetra() {
         console.log(this.letrasError)
@@ -22,19 +23,22 @@ var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
     private callbackAddLetra = this._callbackLetra.bind(this);
 */
     function TableroHangmanComponent() {
-        this.pelicula = "";
         this.oculta = "";
         this.adivina = "";
+        this.solucion = "";
+        this.ganador = false;
         this.peliculas = ["buscando a nemo", "kunfu panda", "big hero 6", "cars", "turbo", "toy story", "peter pan"];
         this.peliculas = String.prototype.toUpperCase.apply(this.peliculas).split(",");
+        this.classInputResolver = "oculto";
+        this.classModalResolver = "oculto";
     }
     TableroHangmanComponent.prototype.ngOnInit = function () {
         var random = Math.floor(Math.random() * this.peliculas.length - 1) + 1;
-        this.pelicula = this.peliculas[random];
-        if (!this.pelicula)
+        TableroHangmanComponent_1.pelicula = this.peliculas[random];
+        if (!TableroHangmanComponent_1.pelicula)
             return;
-        console.log(this.pelicula);
-        var palabrasPeli = this.pelicula.split(" ");
+        console.log(TableroHangmanComponent_1.pelicula);
+        var palabrasPeli = TableroHangmanComponent_1.pelicula.split(" ");
         for (var i = 0; i < palabrasPeli.length; i++) {
             for (var j = 0; j < palabrasPeli[i].length; j++) {
                 this.adivina += "_ ";
@@ -56,7 +60,7 @@ var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
         }.bind(this));
     };
     TableroHangmanComponent.prototype.compruebaLetra = function (key) {
-        if (this.pelicula.indexOf(key.toUpperCase()) > -1) {
+        if (TableroHangmanComponent_1.pelicula.indexOf(key.toUpperCase()) > -1) {
             this.completaPeli(key.toUpperCase());
         }
         else {
@@ -75,8 +79,31 @@ var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
             TableroHangmanComponent_1.letrasError.push(key);
         }
     };
+    TableroHangmanComponent.prototype.resolver = function (event) {
+        console.log("Quieres resolver?");
+        //let oculto = this.classInputResolver === "oculto" ? true : false;
+        //if(!oculto){
+        //  this.classInputResolver = "visible";
+        //}
+        document.getElementById("ventanaModal").style.visibility = "visible";
+        //this.classModalResolver += " visible";
+    };
+    TableroHangmanComponent.prototype.checkSolucion = function () {
+        console.log(this.solucion);
+        if (this.solucion.toUpperCase() === TableroHangmanComponent_1.pelicula) {
+            this.ganador = true;
+            //let imagenHangman = new ImagenHangmanComponent();
+            //imagenHangman.insertaImagen();
+        }
+        this.cerrar();
+    };
+    TableroHangmanComponent.prototype.cerrar = function () {
+        document.getElementById("ventanaModal").style.visibility = "hidden";
+        this.classInputResolver = "oculto";
+    };
     return TableroHangmanComponent;
 }());
+TableroHangmanComponent.pelicula = "";
 TableroHangmanComponent.letrasError = [];
 TableroHangmanComponent = TableroHangmanComponent_1 = __decorate([
     core_1.Component({

@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var AppComponent = (function () {
     function AppComponent() {
-        this.title = "HANGMAN";
-        this.description = "¿De que película se trata?";
+        //this.title = "Juego del Ahorcado";
+        //this.description = "¿De que película se trata?"
     }
     return AppComponent;
 }());
