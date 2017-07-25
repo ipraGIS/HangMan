@@ -46,7 +46,7 @@ input[type="text"] {
     position:relative;
     left:0%;
     float: left;
-    background: #212121;
+    background: #757575;
     color:#FFFFFF;
     border: none;
     width: 50%;
@@ -73,12 +73,11 @@ input[type="text"] {
     margin:0px;
     
 }
-.ahoracado0{
-    background-image: url("app/assets/images/ahorcado_5.svg");
+.ahorcadoClass{
     background-repeat: no-repeat;
-    width: auto; /*or your image's width*/
+    width: 100%; /*or your image's width*/
     height: auto; /*or your image's height*/
-    margin: 0;
+    margin-top: 30px;
     padding: 0;
 }
 .oculto{
@@ -90,12 +89,12 @@ visibility:hidden;
 }
 
 .button{
-    background: #00796B;
+    background: #FFC107;
     color:#ffffff;
     -webkit-border-radius: 28;
     -moz-border-radius: 28;
     border-radius: 28px;
-    border:3px #FFC107 solid;
+    border:3px #FFF solid;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
 }
@@ -143,3 +142,13 @@ visibility:hidden;
 }
 
 .close:hover { background: gray; }
+
+.cero {
+    color: blue;
+}
+.one {
+    color: green;
+}
+.two {
+    color: red;
+}

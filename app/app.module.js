@@ -10,9 +10,9 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms"); // for use ngModel
 var app_component_1 = require("./app.component");
-var imagen_hangman_1 = require("./components/imagen-hangman");
 var tablero_hangman_1 = require("./components/tablero-hangman");
 var teclado_hangman_1 = require("./components/teclado-hangman");
+var imagen_hangman_1 = require("./components/imagen-hangman");
 var AppModule = (function () {
     function AppModule() {
     }

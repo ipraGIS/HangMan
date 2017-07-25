@@ -1,9 +1,9 @@
 <div class="left">
     <div class="marginText">
-    <p><label><strong>Introduce una letra:</strong></label></p>
+    <p><label>Introduce una letra:</label></p>
     <input id="inputLetra" type=text maxlength="1" [(ngModel)]="letra">
     <div id="Errores">
-        <p><label>Palabras Erróneas</label></p>
+        <p><label>Letras Erróneas</label></p>
         <!-- <span *ngFor="let letra of letras">{{letra}}</span>-->
         <ul id="listErronea">
             <li *ngFor="let letra of letras">{{letra}}</li>

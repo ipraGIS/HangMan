@@ -14,7 +14,28 @@ var AppComponent = (function () {
     function AppComponent() {
         //this.title = "Juego del Ahorcado";
         //this.description = "¿De que película se trata?"
+        this.mostrar = 0;
     }
+    Object.defineProperty(AppComponent.prototype, "_mostrar", {
+        set: function (m) {
+            this.mostrar = m;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AppComponent.prototype.tablero = function () {
+        console.log(this.mostrar);
+        this.mostrar = 0;
+        console.log("mostrar tablero");
+    };
+    AppComponent.prototype.jugadores = function () {
+        console.log("mostrar jugadores");
+        this.mostrar = 1;
+    };
+    AppComponent.prototype.puntuacion = function () {
+        this.mostrar = 2;
+        console.log("mostrar puntuación");
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([

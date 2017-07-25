@@ -14,11 +14,10 @@ export class TecladoHangmanComponent  implements OnInit {
     }
 
     ngOnInit() {
-        document.getElementById("inputLetra").addEventListener('keyup', this.prueba.bind(this), false);
+        document.getElementById("inputLetra").addEventListener('keyup', this.listLetrasError.bind(this), false);
         }
 
-    private prueba(){
-        console.log(TableroHangmanComponent.letrasError);
+    private listLetrasError(){
         this.letras = TableroHangmanComponent.letrasError;
     }
 

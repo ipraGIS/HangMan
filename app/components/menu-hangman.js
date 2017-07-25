@@ -10,25 +10,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var app_component_1 = require("../app.component");
 var tablero_hangman_1 = require("./tablero-hangman");
-var TecladoHangmanComponent = (function () {
-    function TecladoHangmanComponent() {
+var MenuHangmanComponent = (function () {
+    function MenuHangmanComponent() {
+        this.app = new app_component_1.AppComponent();
+        this.app = new app_component_1.AppComponent();
     }
-    TecladoHangmanComponent.prototype.ngOnInit = function () {
-        document.getElementById("inputLetra").addEventListener('keyup', this.listLetrasError.bind(this), false);
+    MenuHangmanComponent.prototype.ngOnInit = function () {
+        console.log(this.app);
     };
-    TecladoHangmanComponent.prototype.listLetrasError = function () {
-        this.letras = tablero_hangman_1.TableroHangmanComponent.letrasError;
+    MenuHangmanComponent.prototype.tablero = function () {
+        console.log(this.app.mostrar);
+        this.app.mostrar = 0;
+        console.log("mostrar tablero");
     };
-    return TecladoHangmanComponent;
+    MenuHangmanComponent.prototype.jugadores = function () {
+        console.log("mostrar jugadores");
+        this.app.mostrar = 1;
+    };
+    MenuHangmanComponent.prototype.puntuacion = function () {
+        this.app.mostrar = 2;
+        console.log("mostrar puntuación");
+    };
+    return MenuHangmanComponent;
 }());
-TecladoHangmanComponent = __decorate([
+MenuHangmanComponent = __decorate([
     core_1.Component({
-        selector: 'teclado-hangman',
-        templateUrl: 'app/views/teclado-hangman.html',
+        selector: 'menu-hangman',
+        templateUrl: 'app/views/menu-hangman.html',
         providers: [tablero_hangman_1.TableroHangmanComponent]
     }),
     __metadata("design:paramtypes", [])
-], TecladoHangmanComponent);
-exports.TecladoHangmanComponent = TecladoHangmanComponent;
-//# sourceMappingURL=teclado-hangman.js.map
+], MenuHangmanComponent);
+exports.MenuHangmanComponent = MenuHangmanComponent;
+//# sourceMappingURL=menu-hangman.js.map

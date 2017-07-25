@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-//mport { ImagenHangmanComponent } from './imagen-hangman';
+var imagen_hangman_1 = require("./imagen-hangman");
 var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
     /*public callbackLetra() {
         console.log(this.letrasError)
@@ -26,7 +26,6 @@ var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
         this.oculta = "";
         this.adivina = "";
         this.solucion = "";
-        this.ganador = false;
         this.peliculas = ["buscando a nemo", "kunfu panda", "big hero 6", "cars", "turbo", "toy story", "peter pan"];
         this.peliculas = String.prototype.toUpperCase.apply(this.peliculas).split(",");
         this.classInputResolver = "oculto";
@@ -37,6 +36,14 @@ var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
         TableroHangmanComponent_1.pelicula = this.peliculas[random];
         if (!TableroHangmanComponent_1.pelicula)
             return;
+        if (TableroHangmanComponent_1.pelicula.length > 14 && TableroHangmanComponent_1.pelicula.length < 20) {
+            var ad = document.getElementById("adivina");
+            var reduccion = 15 * (TableroHangmanComponent_1.pelicula.length - 14);
+            document.getElementById("adivina").style.fontSize = (200 - reduccion) + "%";
+        }
+        else if (TableroHangmanComponent_1.pelicula.length >= 20) {
+            document.getElementById("adivina").style.fontSize = "16px";
+        }
         console.log(TableroHangmanComponent_1.pelicula);
         var palabrasPeli = TableroHangmanComponent_1.pelicula.split(" ");
         for (var i = 0; i < palabrasPeli.length; i++) {
@@ -66,6 +73,8 @@ var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
         else {
             this.addLetraError(key.toUpperCase());
         }
+        var input = document.getElementById("inputLetra");
+        input.value = "";
     };
     TableroHangmanComponent.prototype.completaPeli = function (key) {
         for (var i = 0; i < this.oculta.length; i++) {
@@ -80,7 +89,7 @@ var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
         }
     };
     TableroHangmanComponent.prototype.resolver = function (event) {
-        console.log("Quieres resolver?");
+        console.log("resolver tablero?");
         //let oculto = this.classInputResolver === "oculto" ? true : false;
         //if(!oculto){
         //  this.classInputResolver = "visible";
@@ -89,11 +98,12 @@ var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
         //this.classModalResolver += " visible";
     };
     TableroHangmanComponent.prototype.checkSolucion = function () {
-        console.log(this.solucion);
         if (this.solucion.toUpperCase() === TableroHangmanComponent_1.pelicula) {
-            this.ganador = true;
-            //let imagenHangman = new ImagenHangmanComponent();
-            //imagenHangman.insertaImagen();
+            //this.ganador = true;
+            var imagenHangman = new imagen_hangman_1.ImagenHangmanComponent();
+            imagenHangman._ganador = true;
+            imagenHangman.insertaImagen();
+            console.log(imagenHangman.ahorcadoSrc);
         }
         this.cerrar();
     };

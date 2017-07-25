@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Injectable } from '@angular/core';
-//mport { ImagenHangmanComponent } from './imagen-hangman';
+import { ImagenHangmanComponent } from './imagen-hangman';
 
 @Component({
     selector: 'tablero-hangman',
@@ -12,12 +12,13 @@ export class TableroHangmanComponent implements OnInit {
     public oculta: string = "";
     public adivina: string = "";
     private solucion: string = "";
-    private ganador = false;
+    //private ganador = false;
     private classInputResolver;
     private classModalResolver;
 
     static pelicula: string = "";
     static letrasError: Array<string> = [];
+
 
     /*public callbackLetra() {
         console.log(this.letrasError)
@@ -42,7 +43,13 @@ export class TableroHangmanComponent implements OnInit {
         TableroHangmanComponent.pelicula = this.peliculas[random];
         if (!TableroHangmanComponent.pelicula)
             return;
-
+        if(TableroHangmanComponent.pelicula.length>14 && TableroHangmanComponent.pelicula.length<20){
+            let ad = document.getElementById("adivina") as any;
+            let reduccion = 15*(TableroHangmanComponent.pelicula.length-14);
+            document.getElementById("adivina").style.fontSize= (200-reduccion) + "%";
+        }else if (TableroHangmanComponent.pelicula.length>=20){
+            document.getElementById("adivina").style.fontSize= "16px";
+        }
         console.log(TableroHangmanComponent.pelicula);
         let palabrasPeli: String[] = TableroHangmanComponent.pelicula.split(" ");
 
@@ -75,6 +82,8 @@ export class TableroHangmanComponent implements OnInit {
         } else {
             this.addLetraError(key.toUpperCase());
         }
+        let input = document.getElementById("inputLetra") as any;
+        input.value= "";
     }
     private completaPeli(key) {
 
@@ -92,7 +101,7 @@ export class TableroHangmanComponent implements OnInit {
     }
 
     resolver(event) {
-        console.log("Quieres resolver?");
+        console.log("resolver tablero?");
         //let oculto = this.classInputResolver === "oculto" ? true : false;
         //if(!oculto){
         //  this.classInputResolver = "visible";
@@ -104,11 +113,12 @@ export class TableroHangmanComponent implements OnInit {
     }
 
     checkSolucion() {
-        console.log(this.solucion);
         if (this.solucion.toUpperCase() === TableroHangmanComponent.pelicula) {
-            this.ganador = true;
-            //let imagenHangman = new ImagenHangmanComponent();
-            //imagenHangman.insertaImagen();
+            //this.ganador = true;
+            let imagenHangman = new ImagenHangmanComponent();
+            imagenHangman._ganador = true;
+            imagenHangman.insertaImagen();
+            console.log(imagenHangman.ahorcadoSrc);
         }
         this.cerrar();
     }

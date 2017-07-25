@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-	selector:'my-app',
+	selector: 'my-app',
 	//template:'<h1>Hola mundo desde Angular2</h1>'
 	/*template: `<h1>Aplicacion con comillas Invertidas</h1>
 				<h2>Esto es la descripcion </h2>
@@ -11,13 +11,34 @@ import {Component} from '@angular/core';
 	templateUrl: 'app/views/home.html'
 })
 
-export class AppComponent{
+export class AppComponent {
 	public title: string;
 	public description: string;
-	constructor(){
+	public mostrar: number;
+
+	set _mostrar(m: number) {
+		this.mostrar = m;
+	}
+	constructor() {
 		//this.title = "Juego del Ahorcado";
 		//this.description = "¿De que película se trata?"
-
+		this.mostrar = 0;
 	}
 
+	 tablero() {
+        console.log(this.mostrar);
+        this.mostrar = 0;
+        console.log("mostrar tablero")
+    }
+    jugadores() {
+        console.log("mostrar jugadores");
+        this.mostrar = 1;
+
+    }
+
+    puntuacion() {
+       this.mostrar = 2;
+        console.log("mostrar puntuación")
+    }
+ 
 }
