@@ -1,22 +1,20 @@
 <div>
 <!-- <h2>{{title}}</h2>
 <h4>{{description}}</h4> -->
-<button class="button" (click)="tablero()">Tablero</button>
-<button class="button" (click)="jugadores()">Jugadores</button>
-<button class="button" (click)="puntuacion()">Puntuación</button> 
+<button class="button" (click)="onTab(0)">Ahorcado</button>
+<button class="button" (click)="onTab(1)">3 en Raya</button>
+<button class="button" (click)="onTab(2)">Calculadora</button> 
 <!-- <menu-hangman></menu-hangman>  -->
 <div *ngIf="mostrar == 0">
-<tablero-hangman></tablero-hangman>
 <teclado-hangman></teclado-hangman>
 <imagen-hangman></imagen-hangman>
+<tablero-hangman></tablero-hangman>
 </div>
 
 <div *ngIf="mostrar == 1">
-    <span>Jugadores</span>
+    <span>Tres en Raya</span>
 </div>
 <div *ngIf="mostrar == 2">
-     <span>Puntuación</span>
+     <span>Calculadora</span>
 </div>
-
-
 </div>

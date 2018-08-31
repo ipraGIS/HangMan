@@ -11,7 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var imagen_hangman_1 = require("./imagen-hangman");
-var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
+var http_1 = require("@angular/http");
+var TableroHangmanComponent = /** @class */ (function () {
     /*public callbackLetra() {
         console.log(this.letrasError)
         return this.letrasError;
@@ -22,16 +23,55 @@ var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
 
     private callbackAddLetra = this._callbackLetra.bind(this);
 */
-    function TableroHangmanComponent() {
+    function TableroHangmanComponent(http) {
+        this.http = http;
         this.oculta = "";
         this.adivina = "";
         this.solucion = "";
+        this.classModalResolver = "modal";
+        this.urlPelis = "app/assets/peliculas.txt";
+        this.imagenHangman = new imagen_hangman_1.ImagenHangmanComponent();
         this.peliculas = ["buscando a nemo", "kunfu panda", "big hero 6", "cars", "turbo", "toy story", "peter pan"];
         this.peliculas = String.prototype.toUpperCase.apply(this.peliculas).split(",");
         this.classInputResolver = "oculto";
         this.classModalResolver = "oculto";
+        var obj;
     }
+    TableroHangmanComponent_1 = TableroHangmanComponent;
     TableroHangmanComponent.prototype.ngOnInit = function () {
+        //recupera las peliculas de un archivo peliculas.txt
+        this.getPelis();
+        //Escucha el evento keyUp
+        document.getElementById("inputLetra").addEventListener('keyup', this.handleInputLetra.bind(this));
+    };
+    TableroHangmanComponent.prototype.handleInputLetra = function (e) {
+        if (e.keyCode >= 65 && e.keyCode <= 90 || e.keyCode === 192) { // para la ñ
+            this.compruebaLetra(e.key);
+        }
+    };
+    TableroHangmanComponent.prototype.getPelis = function () {
+        var _this = this;
+        fetch(this.urlPelis, {
+            method: 'GET',
+            headers: new Headers()
+        })
+            .then(function (res) {
+            return res.text();
+        })
+            .then(function (text) {
+            console.log('Mensajes cargados');
+            var text2 = text.replace(/[\r\n]/g, '');
+            _this.peliculas = String.prototype.toUpperCase.apply(text2).split(",");
+            console.log(_this.peliculas);
+            _this.setPeli();
+        })
+            .catch(function () {
+            console.log('Peliculas no cargados');
+            alert('Error al cargar el archivo con las peliculas');
+        });
+    };
+    // Selecciona aleatoriamente una pelicula de entre las listadas.
+    TableroHangmanComponent.prototype.setPeli = function () {
         var random = Math.floor(Math.random() * this.peliculas.length - 1) + 1;
         TableroHangmanComponent_1.pelicula = this.peliculas[random];
         if (!TableroHangmanComponent_1.pelicula)
@@ -59,12 +99,6 @@ var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
         }
         this.adivina = this.adivina.substring(0, this.adivina.length - 1);
         this.oculta = this.oculta.substring(0, this.oculta.length - 1);
-        //document.getElementById("inputLetra").addEventListener('keyup', this.escribeLetra.bind(this), false);
-        document.getElementById("inputLetra").addEventListener('keyup', function (e) {
-            if (e.keyCode >= 65 && e.keyCode <= 90 || e.keyCode === 192) {
-                this.compruebaLetra(e.key);
-            }
-        }.bind(this));
     };
     TableroHangmanComponent.prototype.compruebaLetra = function (key) {
         if (TableroHangmanComponent_1.pelicula.indexOf(key.toUpperCase()) > -1) {
@@ -72,6 +106,7 @@ var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
         }
         else {
             this.addLetraError(key.toUpperCase());
+            this.imagenHangman.updateImagen();
         }
         var input = document.getElementById("inputLetra");
         input.value = "";
@@ -94,7 +129,7 @@ var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
         //if(!oculto){
         //  this.classInputResolver = "visible";
         //}
-        document.getElementById("ventanaModal").style.visibility = "visible";
+        document.getElementById("modal").style.visibility = "visible";
         //this.classModalResolver += " visible";
     };
     TableroHangmanComponent.prototype.checkSolucion = function () {
@@ -102,26 +137,26 @@ var TableroHangmanComponent = TableroHangmanComponent_1 = (function () {
             //this.ganador = true;
             var imagenHangman = new imagen_hangman_1.ImagenHangmanComponent();
             imagenHangman._ganador = true;
-            imagenHangman.insertaImagen();
+            imagenHangman.updateImagen();
             console.log(imagenHangman.ahorcadoSrc);
         }
         this.cerrar();
     };
     TableroHangmanComponent.prototype.cerrar = function () {
-        document.getElementById("ventanaModal").style.visibility = "hidden";
+        document.getElementById("modal").style.visibility = "hidden";
         this.classInputResolver = "oculto";
     };
+    var TableroHangmanComponent_1;
+    TableroHangmanComponent.pelicula = "";
+    TableroHangmanComponent.letrasError = [];
+    TableroHangmanComponent = TableroHangmanComponent_1 = __decorate([
+        core_1.Component({
+            selector: 'tablero-hangman',
+            templateUrl: 'app/views/tablero-hangman.html',
+        }),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], TableroHangmanComponent);
     return TableroHangmanComponent;
 }());
-TableroHangmanComponent.pelicula = "";
-TableroHangmanComponent.letrasError = [];
-TableroHangmanComponent = TableroHangmanComponent_1 = __decorate([
-    core_1.Component({
-        selector: 'tablero-hangman',
-        templateUrl: 'app/views/tablero-hangman.html',
-    }),
-    __metadata("design:paramtypes", [])
-], TableroHangmanComponent);
 exports.TableroHangmanComponent = TableroHangmanComponent;
-var TableroHangmanComponent_1;
 //# sourceMappingURL=tablero-hangman.js.map

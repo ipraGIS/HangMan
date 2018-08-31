@@ -10,10 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
+var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        //this.title = "Juego del Ahorcado";
-        //this.description = "¿De que película se trata?"
+        // this.title = "Juego del Ahorcado";
+        // this.description = "¿De que película se trata?"
         this.mostrar = 0;
     }
     Object.defineProperty(AppComponent.prototype, "_mostrar", {
@@ -23,33 +23,24 @@ var AppComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    AppComponent.prototype.tablero = function () {
-        console.log(this.mostrar);
-        this.mostrar = 0;
-        console.log("mostrar tablero");
+    AppComponent.prototype.onTab = function (tab) {
+        this.mostrar = tab;
+        console.log("muestra tab " + tab);
     };
-    AppComponent.prototype.jugadores = function () {
-        console.log("mostrar jugadores");
-        this.mostrar = 1;
-    };
-    AppComponent.prototype.puntuacion = function () {
-        this.mostrar = 2;
-        console.log("mostrar puntuación");
-    };
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'my-app',
+            //template:'<h1>Hola mundo desde Angular2</h1>'
+            /*template: `<h1>Aplicacion con comillas Invertidas</h1>
+                        <h2>Esto es la descripcion </h2>
+                        <h3>{{title}}</h3>
+                         `
+            */
+            templateUrl: 'app/views/home.html'
+        }),
+        __metadata("design:paramtypes", [])
+    ], AppComponent);
     return AppComponent;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'my-app',
-        //template:'<h1>Hola mundo desde Angular2</h1>'
-        /*template: `<h1>Aplicacion con comillas Invertidas</h1>
-                    <h2>Esto es la descripcion </h2>
-                    <h3>{{title}}</h3>
-                     `
-        */
-        templateUrl: 'app/views/home.html'
-    }),
-    __metadata("design:paramtypes", [])
-], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

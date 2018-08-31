@@ -1,5 +1,8 @@
 import { Component, Input, OnInit, Injectable } from '@angular/core';
 import { ImagenHangmanComponent } from './imagen-hangman';
+import { Http, Response } from '@angular/http';
+
+
 
 @Component({
     selector: 'tablero-hangman',
@@ -14,11 +17,11 @@ export class TableroHangmanComponent implements OnInit {
     private solucion: string = "";
     //private ganador = false;
     private classInputResolver;
-    private classModalResolver;
-
+    private classModalResolver = "modal";
+    private urlPelis = "app/assets/peliculas.txt";
+    private imagenHangman = new ImagenHangmanComponent();
     static pelicula: string = "";
     static letrasError: Array<string> = [];
-
 
     /*public callbackLetra() {
         console.log(this.letrasError)
@@ -30,15 +33,62 @@ export class TableroHangmanComponent implements OnInit {
 
     private callbackAddLetra = this._callbackLetra.bind(this);
 */
-    constructor() {
+    constructor(private http: Http) {
         this.peliculas = ["buscando a nemo", "kunfu panda", "big hero 6", "cars", "turbo", "toy story", "peter pan"];
         this.peliculas = String.prototype.toUpperCase.apply(this.peliculas).split(",");
         this.classInputResolver = "oculto";
         this.classModalResolver = "oculto";
+        
+        var obj;
+       
+        
     }
 
 
     ngOnInit() {
+        
+        //recupera las peliculas de un archivo peliculas.txt
+        this.getPelis();
+        
+        //Escucha el evento keyUp
+        document.getElementById("inputLetra").addEventListener('keyup', this.handleInputLetra.bind(this));
+
+    }
+
+    private handleInputLetra(e){
+        if (e.keyCode >= 65 && e.keyCode <= 90 || e.keyCode === 192) {// para la ñ
+            this.compruebaLetra(e.key);
+        }
+    }
+
+    private getPelis(){
+        fetch(this.urlPelis, {
+            method: 'GET',
+            headers: new Headers()
+        })
+            .then(res => {
+                return res.text();
+            })
+            .then(text => {
+                console.log('Mensajes cargados');
+                let text2 = text.replace(/[\r\n]/g, '');
+                this.peliculas = String.prototype.toUpperCase.apply(text2).split(",");
+                console.log(this.peliculas);
+                this.setPeli();
+
+            })
+            .catch(() => {
+                console.log('Peliculas no cargados');
+                alert('Error al cargar el archivo con las peliculas');
+            });
+    }
+
+
+    
+
+    // Selecciona aleatoriamente una pelicula de entre las listadas.
+    private setPeli(){
+
         let random = Math.floor(Math.random() * this.peliculas.length - 1) + 1
         TableroHangmanComponent.pelicula = this.peliculas[random];
         if (!TableroHangmanComponent.pelicula)
@@ -66,14 +116,6 @@ export class TableroHangmanComponent implements OnInit {
         }
         this.adivina = this.adivina.substring(0, this.adivina.length - 1);
         this.oculta = this.oculta.substring(0, this.oculta.length - 1);
-
-        //document.getElementById("inputLetra").addEventListener('keyup', this.escribeLetra.bind(this), false);
-
-        document.getElementById("inputLetra").addEventListener('keyup', function (e) {
-            if (e.keyCode >= 65 && e.keyCode <= 90 || e.keyCode === 192) {// para la ñ
-                this.compruebaLetra(e.key);
-            }
-        }.bind(this));
     }
 
     private compruebaLetra(key) {
@@ -81,10 +123,14 @@ export class TableroHangmanComponent implements OnInit {
             this.completaPeli(key.toUpperCase());
         } else {
             this.addLetraError(key.toUpperCase());
+            this.imagenHangman.updateImagen();
         }
+        
+
         let input = document.getElementById("inputLetra") as any;
         input.value= "";
     }
+
     private completaPeli(key) {
 
         for (let i = 0; i < this.oculta.length; i++) {
@@ -107,7 +153,7 @@ export class TableroHangmanComponent implements OnInit {
         //  this.classInputResolver = "visible";
         //}
 
-        document.getElementById("ventanaModal").style.visibility = "visible";
+        document.getElementById("modal").style.visibility = "visible";
         //this.classModalResolver += " visible";
 
     }
@@ -117,7 +163,7 @@ export class TableroHangmanComponent implements OnInit {
             //this.ganador = true;
             let imagenHangman = new ImagenHangmanComponent();
             imagenHangman._ganador = true;
-            imagenHangman.insertaImagen();
+            imagenHangman.updateImagen();
             console.log(imagenHangman.ahorcadoSrc);
         }
         this.cerrar();
@@ -125,7 +171,7 @@ export class TableroHangmanComponent implements OnInit {
 
 
     cerrar() {
-        document.getElementById("ventanaModal").style.visibility = "hidden";
+        document.getElementById("modal").style.visibility = "hidden";
         this.classInputResolver = "oculto";
     }
 

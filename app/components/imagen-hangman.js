@@ -11,16 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var tablero_hangman_1 = require("./tablero-hangman");
-var ImagenHangmanComponent = (function () {
+var ImagenHangmanComponent = /** @class */ (function () {
     function ImagenHangmanComponent() {
         //private solucion2;
         this.ganador = false;
         this.ahorcadoSrc = 'app/assets/images/ahorcado_0.svg';
-        this.classInputResolver = "oculto";
-        this.classModalResolver = "oculto";
+        // this.classInputResolver = "oculto";
+        // this.classModalResolver = "oculto";
     }
     ImagenHangmanComponent.prototype.ngOnInit = function () {
-        document.getElementById("inputLetra").addEventListener('keyup', this.insertaImagen.bind(this), false);
+        //document.getElementById("inputLetra").addEventListener('keyup', this.updateImagen.bind(this), false);
+        //this.ahorcadoSrc = "app/assets/images/ahorcado_0.svg"
     };
     Object.defineProperty(ImagenHangmanComponent.prototype, "_ganador", {
         get: function () {
@@ -32,56 +33,41 @@ var ImagenHangmanComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    /*resolver(event) {
-        console.log("Quieres resolver?");
-        //let oculto = this.classInputResolver === "oculto" ? true : false;
-        //if(!oculto){
-        //  this.classInputResolver = "visible";
-        //}
-
-        document.getElementById("ventanaModal").style.visibility = "visible";
-        //this.classModalResolver += " visible";
-
-    }*/
-    /* checkSolucion2() {
-         console.log("desdeImagen")
-         if (this.solucion2.toUpperCase() === TableroHangmanComponent.pelicula) {
-            this.ganador = true;
-             this.insertaImagen();
-         }
-         this.cerrar();
-     }*/
     ImagenHangmanComponent.prototype.cerrar = function () {
-        document.getElementById("ventanaModal").style.visibility = "hidden";
+        document.getElementById("modal").style.visibility = "hidden";
         this.classInputResolver = "oculto";
     };
-    ImagenHangmanComponent.prototype.insertaImagen = function () {
+    ImagenHangmanComponent.prototype.updateImagen = function () {
+        console.log("updateImages");
         var fallos = this.ganador === true ? -1 : tablero_hangman_1.TableroHangmanComponent.letrasError.length;
+        console.log(fallos);
         switch (fallos) {
             case -1:
                 this.ahorcadoSrc = "app/assets/images/champion.svg";
-                var img = document.getElementById("imgAhorcado");
-                img.src = "app/assets/images/champion.svg";
                 break;
             case 0:
-                console.log("image0");
-                this.ahorcadoSrc = "app/assets/images/ahorcado_0.svg";
+                this.ahorcadoSrc = "app/assets/images/ahorcado_1.svg";
+                console.log('cambiada imagen a ahorcado_' + fallos);
                 break;
             case 1:
-                console.log("image1");
                 this.ahorcadoSrc = "app/assets/images/ahorcado_1.svg";
+                console.log('cambiada imagen a ahorcado_' + fallos);
                 break;
             case 2:
                 this.ahorcadoSrc = "app/assets/images/ahorcado_2.svg";
+                console.log('cambiada imagen a ahorcado_' + fallos);
                 break;
             case 3:
                 this.ahorcadoSrc = "app/assets/images/ahorcado_3.svg";
+                console.log('cambiada imagen a ahorcado_' + fallos);
                 break;
             case 4:
                 this.ahorcadoSrc = "app/assets/images/ahorcado_4.svg";
+                console.log('cambiada imagen a ahorcado_' + fallos);
                 break;
             case 5:
                 this.ahorcadoSrc = "app/assets/images/ahorcado_5.svg";
+                console.log('cambiada imagen a ahorcado_' + fallos);
                 break;
             default:
                 // cambiar imagen por defecto.
@@ -89,14 +75,14 @@ var ImagenHangmanComponent = (function () {
                 break;
         }
     };
+    ImagenHangmanComponent = __decorate([
+        core_1.Component({
+            selector: 'imagen-hangman',
+            templateUrl: 'app/views/imagen-hangman.html',
+        }),
+        __metadata("design:paramtypes", [])
+    ], ImagenHangmanComponent);
     return ImagenHangmanComponent;
 }());
-ImagenHangmanComponent = __decorate([
-    core_1.Component({
-        selector: 'imagen-hangman',
-        templateUrl: 'app/views/imagen-hangman.html',
-    }),
-    __metadata("design:paramtypes", [])
-], ImagenHangmanComponent);
 exports.ImagenHangmanComponent = ImagenHangmanComponent;
 //# sourceMappingURL=imagen-hangman.js.map

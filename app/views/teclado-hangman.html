@@ -1,13 +1,14 @@
-<div class="left">
-    <div class="marginText">
-    <p><label>Introduce una letra:</label></p>
-    <input id="inputLetra" type=text maxlength="1" [(ngModel)]="letra">
+<div class="letras">
+    <div class="input-w">
+        <label id="labelLetra">Introduce una letra</label>
+        <input class="inputLetra" autofocus id="inputLetra" type=text maxlength="1" [(ngModel)]="letra">
+    </div>
     <div id="Errores">
-        <p><label>Letras Erróneas</label></p>
+        <!-- <p><label>Letras Erróneas</label></p> -->
         <!-- <span *ngFor="let letra of letras">{{letra}}</span>-->
         <ul id="listErronea">
-            <li *ngFor="let letra of letras">{{letra}}</li>
+            <span *ngIf="errores != -1"><label>Letras Erróneas</label></span>
+            <span *ngFor="let letra of letras">{{letra}}</span>
         </ul>
-    </div>
     </div>
 </div>

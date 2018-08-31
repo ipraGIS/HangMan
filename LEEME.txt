@@ -1,0 +1,3 @@
+Aplicación creada con Angular2
+
+ - Arrancar la aplicacion:npm run lite

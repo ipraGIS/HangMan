@@ -1,13 +1,12 @@
 <div id="tablero">
     <span id=adivina><strong>{{adivina}}</strong></span>
-    <div class="marginText"><span>¿Crees que lo sabes?: </span><button class="button" (click)="resolver()">Resolver</button></div>
+    <div class="marginText"><p>¿Crees que lo sabes?: </p><button class="button" (click)="resolver()">Resolver</button></div>
 </div>
-
- <div id="ventanaModal" [class]="classModalResolver">
-    <div id="modal">
-        <button (click)="cerrar()" class="close">X</button>
-        <p>Resolver</p>
-        <label>Titulo: <input style="display: inline" id="inputResolver"  type=text maxlength="40" [(ngModel)]="solucion"></label>
-        <div style="display: inline; left:95%"><button class="button" (click)="checkSolucion()">Resolver</button></div>
+<!--Ventana Modal de Resolucion-->
+<div id="modal"  [class]="classModalResolver">
+    <div class="contentModal">
+        <p><button (click)="cerrar()" class="close">X</button></p>
+        <input id="inputResolver"  type=text maxlength="40" [(ngModel)]="solucion">
+        <p><button class="button" (click)="checkSolucion()">Resolver</button></p>
     </div>
 </div> 

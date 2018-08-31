@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 @Component({
 	selector: 'my-app',
@@ -20,25 +21,14 @@ export class AppComponent {
 		this.mostrar = m;
 	}
 	constructor() {
-		//this.title = "Juego del Ahorcado";
-		//this.description = "¿De que película se trata?"
+		// this.title = "Juego del Ahorcado";
+		// this.description = "¿De que película se trata?"
 		this.mostrar = 0;
 	}
 
-	 tablero() {
-        console.log(this.mostrar);
-        this.mostrar = 0;
-        console.log("mostrar tablero")
-    }
-    jugadores() {
-        console.log("mostrar jugadores");
-        this.mostrar = 1;
-
-    }
-
-    puntuacion() {
-       this.mostrar = 2;
-        console.log("mostrar puntuación")
+	 onTab(tab) {
+        this.mostrar = tab;
+        console.log("muestra tab " + tab)
     }
  
 }

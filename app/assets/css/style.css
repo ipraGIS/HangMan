@@ -5,7 +5,8 @@ body{
     height: 100%;
     margin:0px;
      font-family: sans-serif;
-  font-size: 18px;
+     font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
 }
 
 #adivina{
@@ -20,21 +21,25 @@ body{
     background: #FFF;
 } */
 
+.letras{
+    text-align: center;
+}
+
 #tablero{
     width: 100%;
     min-height: 200px;
-    background-color:  #00796B;
+    /*background-color:  #00796B;*/
     border: none;
     text-align: center;
     overflow: hidden;
-    color:#FFF;
+    color:#000;
     padding-top: 8vh;
     
 }
 
 input[type="text"] {
   display: block;
-  width: 40%;
+  
   top:10px;
   line-height: 200%;
   box-shadow: none;
@@ -45,10 +50,10 @@ input[type="text"] {
 .left {  
     position:relative;
     left:0%;
-    float: left;
+    float: right;
     background: #757575;
-    color:#FFFFFF;
-    border: none;
+    color:#ffffff;
+    border:none ;
     width: 50%;
     height: 50vh;
     z-index: 1;
@@ -75,11 +80,15 @@ input[type="text"] {
 }
 .ahorcadoClass{
     background-repeat: no-repeat;
-    width: 100%; /*or your image's width*/
     height: auto; /*or your image's height*/
-    margin-top: 30px;
-    padding: 0;
+    border: 1px solid #000000;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
+
+
+
 .oculto{
 visibility:hidden;
 }
@@ -90,65 +99,97 @@ visibility:hidden;
 
 .button{
     background: #FFC107;
-    color:#ffffff;
-    -webkit-border-radius: 28;
-    -moz-border-radius: 28;
-    border-radius: 28px;
-    border:3px #FFF solid;
-    padding: 10px 20px 10px 20px;
-    text-decoration: none;
+    color:#000;
+    border:none;
+    outline: none;
+    padding: 10px 20px;
 }
 
 .button:hover{
     background: gray;
 }
 
-#modal {
-  background: #FFF;
+ #modal {
+  background: rgba(0,0,0,0.8);;
   font-size: 1em;
   color: #000;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 25%;
-  width: 50%;
-  border-radius: 10px;
+  height: 100%;
+  width: 100%;
   transition: all .1s;
   position: absolute;
   z-index: 9999;
   vertical-align: center;
-  padding:10px;
+  padding:0;
+} 
+
+.contentModal{
+    text-align: center;
+    align-content: center;
+    background-color: #FFF;
+    top: 40%;
+    width: 30%;
+    height: auto;
+    min-height: 20%;
+    padding: 2px;
+    position: relative;
+    border-radius: 2px;
+    border: 2px #FFF solid;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
 }
 
 
 .close {
-	background: #00796B;
+	background: #000;
 	color: #FFFFFF;
-	line-height: 25px;
+    line-height: 25px;
+    font-size: 14px;
 	position: absolute;
 	right: 5px;
 	text-align: center;
 	top: 5px;
-	width: 24px;
+	width: 25px;
 	text-decoration: none;
 	font-weight: bold;
-	-webkit-border-radius: 12px;
-	-moz-border-radius: 12px;
-	border-radius: 12px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
 	-moz-box-shadow: 1px 1px 3px #000;
 	-webkit-box-shadow: 1px 1px 3px #000;
-	 border:3px #FFC107 solid;
+	 border: 2px #FFF solid;
 }
 
 .close:hover { background: gray; }
 
-.cero {
-    color: blue;
+ #inputLetra{
+    border-color:#000;
+    border-width:2px;
+    width: 15px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+} 
+
+#inputResolver{
+    border-color:#000;
+    border-width:2px;
+    width: 250px !important;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    display: inline-block !important;
 }
-.one {
-    color: green;
+
+.input-w label, .input-w input {
+    float: none; /* if you had floats before? otherwise inline-block will behave differently */
+    display: inline-block;
+    vertical-align: middle;    
 }
-.two {
-    color: red;
-}
+
+
