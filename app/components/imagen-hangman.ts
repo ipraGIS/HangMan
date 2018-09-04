@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { TableroHangmanComponent } from './tablero-hangman';
 
 @Component({
@@ -6,9 +6,11 @@ import { TableroHangmanComponent } from './tablero-hangman';
     templateUrl: 'app/views/imagen-hangman.html',
     //providers: [TableroHangmanComponent]
 })
-export class ImagenHangmanComponent implements OnInit {
 
-    public  ahorcadoSrc;
+
+export class ImagenHangmanComponent implements OnInit {
+    @Input() ahorcadoSrc: string;
+    //public  ahorcadoSrc = "";
     private classInputResolver;
     private classModalResolver;
     //private solucion2;
@@ -22,7 +24,6 @@ export class ImagenHangmanComponent implements OnInit {
 
     ngOnInit() {
         //document.getElementById("inputLetra").addEventListener('keyup', this.updateImagen.bind(this), false);
-        //this.ahorcadoSrc = "app/assets/images/ahorcado_0.svg"
     }
 
     get _ganador(){
@@ -38,38 +39,35 @@ export class ImagenHangmanComponent implements OnInit {
         this.classInputResolver = "oculto";
     }
 
-    public  updateImagen() {
-        console.log("updateImages");
+    public getImage(){
+        return this.updateImagen() 
+    }
 
-        let fallos = this.ganador === true ? -1 : TableroHangmanComponent.letrasError.length;       
-        console.log(fallos);
+    public  updateImagen(opcion? : number) {
+
+
+        let fallos = TableroHangmanComponent.ganador  === true ? -1 : TableroHangmanComponent.letrasError.length;       
         switch (fallos) {
             case -1:
                 this.ahorcadoSrc = "app/assets/images/champion.svg";
                 break;
             case 0:
-                this.ahorcadoSrc = "app/assets/images/ahorcado_1.svg"
-                console.log('cambiada imagen a ahorcado_'+ fallos)
+                this.ahorcadoSrc = "app/assets/images/ahorcado_0.svg"
                 break;
             case 1:
                 this.ahorcadoSrc = "app/assets/images/ahorcado_1.svg"
-                console.log('cambiada imagen a ahorcado_'+ fallos)
                 break;
             case 2:
                 this.ahorcadoSrc = "app/assets/images/ahorcado_2.svg"
-                console.log('cambiada imagen a ahorcado_'+ fallos)
                 break;
             case 3:
                 this.ahorcadoSrc = "app/assets/images/ahorcado_3.svg"
-                console.log('cambiada imagen a ahorcado_'+ fallos)
                 break;
             case 4:
                 this.ahorcadoSrc = "app/assets/images/ahorcado_4.svg";
-                console.log('cambiada imagen a ahorcado_'+ fallos)
                 break;
             case 5:
                 this.ahorcadoSrc = "app/assets/images/ahorcado_5.svg";
-                console.log('cambiada imagen a ahorcado_'+ fallos)
                 break;
 
             default:
@@ -78,6 +76,8 @@ export class ImagenHangmanComponent implements OnInit {
                 break;
 
         }
+
+        return this.ahorcadoSrc;
         
     }
 }

@@ -13,14 +13,16 @@ var core_1 = require("@angular/core");
 var tablero_hangman_1 = require("./tablero-hangman");
 var TecladoHangmanComponent = /** @class */ (function () {
     function TecladoHangmanComponent() {
-        this.errores = -1;
     }
     TecladoHangmanComponent.prototype.ngOnInit = function () {
         document.getElementById("inputLetra").addEventListener('keyup', this.listLetrasError.bind(this), false);
     };
     TecladoHangmanComponent.prototype.listLetrasError = function () {
         this.letras = tablero_hangman_1.TableroHangmanComponent.letrasError;
-        this.errores = this.letras.length;
+    };
+    TecladoHangmanComponent.prototype.isTrue = function () {
+        if (this.letras)
+            return this.letras.length;
     };
     TecladoHangmanComponent = __decorate([
         core_1.Component({

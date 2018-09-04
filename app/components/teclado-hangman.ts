@@ -10,7 +10,7 @@ import { TableroHangmanComponent } from './tablero-hangman';
 export class TecladoHangmanComponent  implements OnInit {
 
     public letras: Array<string>;
-    public errores = -1;
+
     constructor() {
     }
 
@@ -20,7 +20,13 @@ export class TecladoHangmanComponent  implements OnInit {
 
     private listLetrasError(){
         this.letras = TableroHangmanComponent.letrasError;
-        this.errores = this.letras.length;
+      
+    }
+
+    isTrue(){
+        if (this.letras)
+            return this.letras.length;
+ 
     }
 
 }

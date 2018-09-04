@@ -7,8 +7,8 @@
         <!-- <p><label>Letras Erróneas</label></p> -->
         <!-- <span *ngFor="let letra of letras">{{letra}}</span>-->
         <ul id="listErronea">
-            <span *ngIf="errores != -1"><label>Letras Erróneas</label></span>
-            <span *ngFor="let letra of letras">{{letra}}</span>
+            <span *ngIf="isTrue()"><label>Letras Erróneas</label></span>
+            <span *ngFor="let letra of letras">{{letra}} </span>
         </ul>
     </div>
 </div>

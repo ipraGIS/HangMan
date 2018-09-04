@@ -13,16 +13,7 @@ var core_1 = require("@angular/core");
 var imagen_hangman_1 = require("./imagen-hangman");
 var http_1 = require("@angular/http");
 var TableroHangmanComponent = /** @class */ (function () {
-    /*public callbackLetra() {
-        console.log(this.letrasError)
-        return this.letrasError;
-    }
-    public _callbackLetra() {
-        this.callbackLetra();
-    };
-
-    private callbackAddLetra = this._callbackLetra.bind(this);
-*/
+    //public imagenAhorcado;
     function TableroHangmanComponent(http) {
         this.http = http;
         this.oculta = "";
@@ -30,11 +21,11 @@ var TableroHangmanComponent = /** @class */ (function () {
         this.solucion = "";
         this.classModalResolver = "modal";
         this.urlPelis = "app/assets/peliculas.txt";
-        this.imagenHangman = new imagen_hangman_1.ImagenHangmanComponent();
         this.peliculas = ["buscando a nemo", "kunfu panda", "big hero 6", "cars", "turbo", "toy story", "peter pan"];
         this.peliculas = String.prototype.toUpperCase.apply(this.peliculas).split(",");
         this.classInputResolver = "oculto";
         this.classModalResolver = "oculto";
+        //this.imagenAhorcado = new ImagenHangmanComponent();
         var obj;
     }
     TableroHangmanComponent_1 = TableroHangmanComponent;
@@ -49,6 +40,7 @@ var TableroHangmanComponent = /** @class */ (function () {
             this.compruebaLetra(e.key);
         }
     };
+    // Carga las peliculas desde el archivo peliculas.txt
     TableroHangmanComponent.prototype.getPelis = function () {
         var _this = this;
         fetch(this.urlPelis, {
@@ -76,14 +68,6 @@ var TableroHangmanComponent = /** @class */ (function () {
         TableroHangmanComponent_1.pelicula = this.peliculas[random];
         if (!TableroHangmanComponent_1.pelicula)
             return;
-        if (TableroHangmanComponent_1.pelicula.length > 14 && TableroHangmanComponent_1.pelicula.length < 20) {
-            var ad = document.getElementById("adivina");
-            var reduccion = 15 * (TableroHangmanComponent_1.pelicula.length - 14);
-            document.getElementById("adivina").style.fontSize = (200 - reduccion) + "%";
-        }
-        else if (TableroHangmanComponent_1.pelicula.length >= 20) {
-            document.getElementById("adivina").style.fontSize = "16px";
-        }
         console.log(TableroHangmanComponent_1.pelicula);
         var palabrasPeli = TableroHangmanComponent_1.pelicula.split(" ");
         for (var i = 0; i < palabrasPeli.length; i++) {
@@ -92,21 +76,18 @@ var TableroHangmanComponent = /** @class */ (function () {
                 this.oculta += palabrasPeli[i][j];
                 this.oculta += " ";
             }
-            if (palabrasPeli.length > 1) {
-                this.adivina += "/";
-                this.oculta += "/";
-            }
+            this.adivina += "/";
+            this.oculta += "/";
         }
         this.adivina = this.adivina.substring(0, this.adivina.length - 1);
         this.oculta = this.oculta.substring(0, this.oculta.length - 1);
     };
     TableroHangmanComponent.prototype.compruebaLetra = function (key) {
-        if (TableroHangmanComponent_1.pelicula.indexOf(key.toUpperCase()) > -1) {
-            this.completaPeli(key.toUpperCase());
-        }
-        else {
-            this.addLetraError(key.toUpperCase());
-            this.imagenHangman.updateImagen();
+        TableroHangmanComponent_1.pelicula.indexOf(key.toUpperCase()) > -1 ? this.completaPeli(key.toUpperCase()) : this.addLetraError(key.toUpperCase());
+        //En caso de que adivine  la peli al completo 
+        if (this.adivina.indexOf("_") == -1) {
+            TableroHangmanComponent_1.ganador = true;
+            return;
         }
         var input = document.getElementById("inputLetra");
         input.value = "";
@@ -123,22 +104,14 @@ var TableroHangmanComponent = /** @class */ (function () {
             TableroHangmanComponent_1.letrasError.push(key);
         }
     };
-    TableroHangmanComponent.prototype.resolver = function (event) {
-        console.log("resolver tablero?");
-        //let oculto = this.classInputResolver === "oculto" ? true : false;
-        //if(!oculto){
-        //  this.classInputResolver = "visible";
-        //}
+    TableroHangmanComponent.prototype.resolver = function () {
+        this.solucion = "";
         document.getElementById("modal").style.visibility = "visible";
-        //this.classModalResolver += " visible";
+        document.getElementById("inputResolver").focus();
     };
     TableroHangmanComponent.prototype.checkSolucion = function () {
         if (this.solucion.toUpperCase() === TableroHangmanComponent_1.pelicula) {
-            //this.ganador = true;
-            var imagenHangman = new imagen_hangman_1.ImagenHangmanComponent();
-            imagenHangman._ganador = true;
-            imagenHangman.updateImagen();
-            console.log(imagenHangman.ahorcadoSrc);
+            TableroHangmanComponent_1.ganador = true;
         }
         this.cerrar();
     };
@@ -149,10 +122,12 @@ var TableroHangmanComponent = /** @class */ (function () {
     var TableroHangmanComponent_1;
     TableroHangmanComponent.pelicula = "";
     TableroHangmanComponent.letrasError = [];
+    TableroHangmanComponent.ganador = false;
     TableroHangmanComponent = TableroHangmanComponent_1 = __decorate([
         core_1.Component({
             selector: 'tablero-hangman',
             templateUrl: 'app/views/tablero-hangman.html',
+            providers: [imagen_hangman_1.ImagenHangmanComponent]
         }),
         __metadata("design:paramtypes", [http_1.Http])
     ], TableroHangmanComponent);

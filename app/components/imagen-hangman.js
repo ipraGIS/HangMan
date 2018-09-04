@@ -21,7 +21,6 @@ var ImagenHangmanComponent = /** @class */ (function () {
     }
     ImagenHangmanComponent.prototype.ngOnInit = function () {
         //document.getElementById("inputLetra").addEventListener('keyup', this.updateImagen.bind(this), false);
-        //this.ahorcadoSrc = "app/assets/images/ahorcado_0.svg"
     };
     Object.defineProperty(ImagenHangmanComponent.prototype, "_ganador", {
         get: function () {
@@ -37,44 +36,44 @@ var ImagenHangmanComponent = /** @class */ (function () {
         document.getElementById("modal").style.visibility = "hidden";
         this.classInputResolver = "oculto";
     };
-    ImagenHangmanComponent.prototype.updateImagen = function () {
-        console.log("updateImages");
-        var fallos = this.ganador === true ? -1 : tablero_hangman_1.TableroHangmanComponent.letrasError.length;
-        console.log(fallos);
+    ImagenHangmanComponent.prototype.getImage = function () {
+        return this.updateImagen();
+    };
+    ImagenHangmanComponent.prototype.updateImagen = function (opcion) {
+        var fallos = tablero_hangman_1.TableroHangmanComponent.ganador === true ? -1 : tablero_hangman_1.TableroHangmanComponent.letrasError.length;
         switch (fallos) {
             case -1:
                 this.ahorcadoSrc = "app/assets/images/champion.svg";
                 break;
             case 0:
-                this.ahorcadoSrc = "app/assets/images/ahorcado_1.svg";
-                console.log('cambiada imagen a ahorcado_' + fallos);
+                this.ahorcadoSrc = "app/assets/images/ahorcado_0.svg";
                 break;
             case 1:
                 this.ahorcadoSrc = "app/assets/images/ahorcado_1.svg";
-                console.log('cambiada imagen a ahorcado_' + fallos);
                 break;
             case 2:
                 this.ahorcadoSrc = "app/assets/images/ahorcado_2.svg";
-                console.log('cambiada imagen a ahorcado_' + fallos);
                 break;
             case 3:
                 this.ahorcadoSrc = "app/assets/images/ahorcado_3.svg";
-                console.log('cambiada imagen a ahorcado_' + fallos);
                 break;
             case 4:
                 this.ahorcadoSrc = "app/assets/images/ahorcado_4.svg";
-                console.log('cambiada imagen a ahorcado_' + fallos);
                 break;
             case 5:
                 this.ahorcadoSrc = "app/assets/images/ahorcado_5.svg";
-                console.log('cambiada imagen a ahorcado_' + fallos);
                 break;
             default:
                 // cambiar imagen por defecto.
                 this.ahorcadoSrc = "app/assets/images/ahorcado_5.svg";
                 break;
         }
+        return this.ahorcadoSrc;
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], ImagenHangmanComponent.prototype, "ahorcadoSrc", void 0);
     ImagenHangmanComponent = __decorate([
         core_1.Component({
             selector: 'imagen-hangman',
