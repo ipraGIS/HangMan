@@ -97,12 +97,37 @@ visibility:hidden;
     visibility:visible;
 }
 
+.cabecera{
+   height: 100px;
+}
+.buttonCabecera{
+    background: #FFC107;
+    color:#000;
+    border:none;
+    outline: none;
+    padding: 10px 20px;
+    width: 33%;
+    float: left;
+    border: 2px solid #FFF; 
+}
+
+.color1{
+    background: #FFC107;
+}
+.color2{
+    background: #4CAF50;
+}
+.color3{
+    background: #008CBA;
+}
+
 .button{
     background: #FFC107;
     color:#000;
     border:none;
     outline: none;
     padding: 10px 20px;
+
 }
 
 .button:hover{
