@@ -109,6 +109,7 @@ visibility:hidden;
     width: 33%;
     float: left;
     border: 2px solid #FFF; 
+
 }
 
 .color1{
@@ -127,6 +128,8 @@ visibility:hidden;
     border:none;
     outline: none;
     padding: 10px 20px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
 
 }
 
