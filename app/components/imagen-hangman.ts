@@ -10,16 +10,11 @@ import { TableroHangmanComponent } from './tablero-hangman';
 
 export class ImagenHangmanComponent implements OnInit {
     @Input() ahorcadoSrc: string;
-    //public  ahorcadoSrc = "";
     private classInputResolver;
-    private classModalResolver;
-    //private solucion2;
     public  ganador = false;
 
     constructor() {
         this.ahorcadoSrc = 'app/assets/images/ahorcado_0.svg'
-        // this.classInputResolver = "oculto";
-        // this.classModalResolver = "oculto";
     }
 
     ngOnInit() {

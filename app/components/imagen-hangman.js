@@ -13,11 +13,8 @@ var core_1 = require("@angular/core");
 var tablero_hangman_1 = require("./tablero-hangman");
 var ImagenHangmanComponent = /** @class */ (function () {
     function ImagenHangmanComponent() {
-        //private solucion2;
         this.ganador = false;
         this.ahorcadoSrc = 'app/assets/images/ahorcado_0.svg';
-        // this.classInputResolver = "oculto";
-        // this.classModalResolver = "oculto";
     }
     ImagenHangmanComponent.prototype.ngOnInit = function () {
         //document.getElementById("inputLetra").addEventListener('keyup', this.updateImagen.bind(this), false);

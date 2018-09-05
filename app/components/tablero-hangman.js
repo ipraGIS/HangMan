@@ -13,20 +13,15 @@ var core_1 = require("@angular/core");
 var imagen_hangman_1 = require("./imagen-hangman");
 var http_1 = require("@angular/http");
 var TableroHangmanComponent = /** @class */ (function () {
-    //public imagenAhorcado;
     function TableroHangmanComponent(http) {
         this.http = http;
         this.oculta = "";
         this.adivina = "";
         this.solucion = "";
         this.classModalResolver = "modal";
-        this.urlPelis = "app/assets/peliculas.txt";
-        this.peliculas = ["buscando a nemo", "kunfu panda", "big hero 6", "cars", "turbo", "toy story", "peter pan"];
-        this.peliculas = String.prototype.toUpperCase.apply(this.peliculas).split(",");
+        this.urlPelis = "../../peliculas.txt";
         this.classInputResolver = "oculto";
         this.classModalResolver = "oculto";
-        //this.imagenAhorcado = new ImagenHangmanComponent();
-        var obj;
     }
     TableroHangmanComponent_1 = TableroHangmanComponent;
     TableroHangmanComponent.prototype.ngOnInit = function () {
@@ -54,7 +49,6 @@ var TableroHangmanComponent = /** @class */ (function () {
             console.log('Mensajes cargados');
             var text2 = text.replace(/[\r\n]/g, '');
             _this.peliculas = String.prototype.toUpperCase.apply(text2).split(",");
-            console.log(_this.peliculas);
             _this.setPeli();
         })
             .catch(function () {

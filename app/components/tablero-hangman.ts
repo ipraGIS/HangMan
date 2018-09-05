@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, Injectable } from '@angular/core';
+import { Component,  OnInit, } from '@angular/core';
 import { ImagenHangmanComponent } from './imagen-hangman';
-import { Http, Response } from '@angular/http';
+import { Http} from '@angular/http';
 
 
 
@@ -11,7 +11,6 @@ import { Http, Response } from '@angular/http';
 })
 
 export class TableroHangmanComponent implements OnInit {
-    //@Input() imagenAhorcado: string;
 
     public peliculas: Array<string>;
     public oculta: string = "";
@@ -19,19 +18,16 @@ export class TableroHangmanComponent implements OnInit {
     private solucion: string = "";
     private classInputResolver;
     private classModalResolver = "modal";
-    private urlPelis = "app/assets/peliculas.txt";
+    private urlPelis = "../../peliculas.txt";
     static pelicula: string = "";
     static letrasError: Array<string> = [];
     static ganador = false;
-    //public imagenAhorcado;
+
 
     constructor(private http: Http) {
-        this.peliculas = ["buscando a nemo", "kunfu panda", "big hero 6", "cars", "turbo", "toy story", "peter pan"];
-        this.peliculas = String.prototype.toUpperCase.apply(this.peliculas).split(",");
+
         this.classInputResolver = "oculto";
         this.classModalResolver = "oculto";
-        //this.imagenAhorcado = new ImagenHangmanComponent();
-        var obj;
 
     }
 
@@ -65,7 +61,6 @@ export class TableroHangmanComponent implements OnInit {
                 console.log('Mensajes cargados');
                 let text2 = text.replace(/[\r\n]/g, '');
                 this.peliculas = String.prototype.toUpperCase.apply(text2).split(",");
-                console.log(this.peliculas);
                 this.setPeli();
 
             })
