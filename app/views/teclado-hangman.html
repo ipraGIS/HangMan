@@ -4,8 +4,6 @@
         <input class="inputLetra" autofocus id="inputLetra" type=text maxlength="1" [(ngModel)]="letra">
     </div>
     <div id="Errores">
-        <!-- <p><label>Letras Erróneas</label></p> -->
-        <!-- <span *ngFor="let letra of letras">{{letra}}</span>-->
         <ul id="listErronea">
             <span *ngIf="isTrue()"><label>Letras Erróneas</label></span>
             <span *ngFor="let letra of letras">{{letra}} </span>

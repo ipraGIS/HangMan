@@ -34,10 +34,10 @@ export class TableroHangmanComponent implements OnInit {
 
     ngOnInit() {
 
-        //recupera las peliculas de un archivo peliculas.txt
+        // recupera las peliculas de un archivo peliculas.txt
         this.getPelis();
 
-        //Escucha el evento keyUp
+        // Escucha el evento keyUp
         document.getElementById("inputLetra").addEventListener('keyup', this.handleInputLetra.bind(this));
 
     }
@@ -101,7 +101,7 @@ export class TableroHangmanComponent implements OnInit {
 
         TableroHangmanComponent.pelicula.indexOf(key.toUpperCase()) > -1 ? this.completaPeli(key.toUpperCase()) : this.addLetraError(key.toUpperCase());
 
-        //En caso de que adivine  la peli al completo 
+        // En caso de que adivine  la peli al completo 
         if(this.adivina.indexOf("_") == -1){
             TableroHangmanComponent.ganador = true;
             return;

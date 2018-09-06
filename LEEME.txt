@@ -1,3 +1,7 @@
 Aplicación creada con Angular2
 
  - Arrancar la aplicacion:npm run lite
+
+
+Instalando angular-cli
+npm install -g angular-cli

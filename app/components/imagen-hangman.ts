@@ -3,8 +3,7 @@ import { TableroHangmanComponent } from './tablero-hangman';
 
 @Component({
     selector: 'imagen-hangman',
-    templateUrl: 'app/views/imagen-hangman.html',
-    //providers: [TableroHangmanComponent]
+    templateUrl: 'app/views/imagen-hangman.html'
 })
 
 
@@ -18,7 +17,6 @@ export class ImagenHangmanComponent implements OnInit {
     }
 
     ngOnInit() {
-        //document.getElementById("inputLetra").addEventListener('keyup', this.updateImagen.bind(this), false);
     }
 
     get _ganador(){
